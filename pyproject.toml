@@ -1,0 +1,15 @@
+[project]
+name = "Aufgaben_SE_1_SoSE24"
+version = "0.1.0"
+description = "Default template for PDM package"
+authors = [
+    {name = "mak2494", email = "km2430@mci4me.at"},
+]
+dependencies = ["numpy>=2.2.4", "pandas>=2.2.3"]
+requires-python = ">=3.12"
+readme = "README.md"
+license = {text = "MIT"}
+
+
+[tool.pdm]
+distribution = false

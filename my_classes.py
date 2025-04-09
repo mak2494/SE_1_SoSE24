@@ -1,29 +1,40 @@
 from datetime import datetime
-
-class Subject():
-    def __init__(self, first_name, last_name, sex,age):
+class Person ():
+    def __init__(self, first_name, last_name):
         self.first_name = first_name
         self.last_name = last_name
+
+class Subject(Person):
+    def __init__(self, first_name, last_name, sex, dob):
+        super().__init__(first_name, last_name)
         self.sex = sex
-        self.age = age 
-        pass
+
+        if isinstance(dob, str):
+            self.__dob = datetime.strptime(dob, '%Y-%m-%d')
+        else:
+            self.__dob = dob #Date of Birth as date time 
+
+    def get_age(self):
+        age = datetime.today().year-self.__dob.year
+        return age 
+
 
     def estimate_max_hr(self):
         """A function that estimates the maximum heart rate of a subject"""
+        age = self.get_age()
         if self.sex == "male":
-            max_hr_bpm =  223 - 0.9 * self.age
+            max_hr_bpm =  223 - 0.9 * age
         elif self.sex == "female":
-            max_hr_bpm = 226 - 1.0 *  self.age
+            max_hr_bpm = 226 - 1.0 * age
         else:
             # der input() öffnet ein Eingabefenster für den Nutzer und speichert die Eingabe
             max_hr_bpm  = input("Enter maximum heart rate:")
         return int(max_hr_bpm)
-        pass
 
-class Supervisor():
-    def __init__(self, name, role):
-        self.name = name
-        self.role = role
+
+class Supervisor(Person):
+    def __init__(self,first_name,last_name):
+        super().__init__(first_name, last_name)
         pass
 
 class Experiment:
